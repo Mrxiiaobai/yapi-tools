@@ -1,0 +1,39 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.example.yapi</id>
+
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <!--插件的名称-->
+  <name>YapiTools</name>
+
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+
+  <!-- Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <!--  插件介绍-->
+  <description>yapi插件,将当前打开的java文件，转化为yapi文档所需要的json结构，点击右上角的yapi或者工具栏中的yapi打开yapiJson窗口</description>
+
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow factoryClass="com.example.yapi.YapiToolWindowFactory" id="yapiWindow" anchor="right" secondary="false"></toolWindow>
+  </extensions>
+
+
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="yapi" class="com.example.yapi.YapiAction" text="Yapi">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+    </action>
+    <action id="hello" class="com.example.yapi.YapiAction" text="Yapi">
+      <add-to-group group-id="ToolbarRunGroup" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
