@@ -1,16 +1,17 @@
-package com.example.yapi;
+package com.optimus.yapi;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiManager;
+import com.intellij.psi.*;
 import com.intellij.psi.javadoc.PsiDocComment;
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +33,7 @@ public class JavaToJson {
 
                 // 创建一个空的 JSONObject
                 JSONObject jsonObject = new JSONObject();
+                JSONArray jsonArray = new JSONArray();
 
                 if (classes.length > 0) {
                     PsiClass currentClass = classes[0];
@@ -43,9 +45,15 @@ public class JavaToJson {
                         for(PsiField field : fields){
                             // 生成 Schema
                             JSONObject propertyObject = new JSONObject();
+
                             String name = field.getName();
                             String comment = getCommentText(field);
                             String typeName = getTypeName(field.getType().getPresentableText(), propertyObject);
+                            Boolean ifRequired = findAnnotationsForField(field);
+
+                            if(ifRequired) {
+                                jsonArray.add(name);
+                            }
 
                             propertyObject.put("type", typeName);
                             propertyObject.put("description", comment);
@@ -54,6 +62,10 @@ public class JavaToJson {
                         }
 
                         parentObject.put("properties", jsonObject);
+                        parentObject.put("required", jsonArray);
+
+                        System.out.println("parentObject"+ parentObject);
+
                         Gson gson = new GsonBuilder().setPrettyPrinting().create();
                         str = gson.toJson(parentObject);
                     }
@@ -115,5 +127,16 @@ public class JavaToJson {
         return name;
     }
 
+    private Boolean findAnnotationsForField(PsiField field) {
+        List<PsiAnnotation> annotations = new ArrayList<>(Arrays.asList(field.getAnnotations()));
+        boolean result = false;
+        for (PsiAnnotation annotation : annotations) {
+            String qualifiedName = annotation.getQualifiedName();
+            if ("NotBlank".equals(qualifiedName) || "NotNull".equals(qualifiedName)) {
+                result =  true;
+            }
+        }
+        return result;
+    }
 }
 

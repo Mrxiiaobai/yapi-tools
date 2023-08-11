@@ -1,4 +1,4 @@
-package com.example.yapi;
+package com.optimus.yapi;
 
 import javax.swing.*;
 

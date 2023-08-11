@@ -6,12 +6,12 @@ plugins {
 }
 
 dependencies {
-  implementation("com.fasterxml.jackson.core:jackson-databind:2.9.6");
-  implementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:2.9.6");
+//  implementation("com.fasterxml.jackson.core:jackson-databind:2.12.7.1");
+//  implementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:2.9.6");
 }
 
-group = "com.example"
-version = "1.0-SNAPSHOT"
+group = "com.optimus"
+version = "1.1"
 
 repositories {
   mavenCentral()

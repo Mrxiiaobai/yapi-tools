@@ -1,5 +1,7 @@
-package com.example.yapi;
+package com.optimus.yapi;
 
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
@@ -14,6 +16,8 @@ public class YapiToolWindowFactory implements ToolWindowFactory {
         YapiToolWindowContent yapiContent = new YapiToolWindowContent();
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(yapiContent, "", false);
-        toolWindow.getContentManager().addContent(content);
+//        EditorFactory editorFactory = EditorFactory.getInstance();
+//        Document content = editorFactory.createDocument((CharSequence) yapiContent);
+        toolWindow.getContentManager().addContent((Content) content);
     }
 }

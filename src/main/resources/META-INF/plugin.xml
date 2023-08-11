@@ -1,20 +1,26 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
   <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-  <id>com.example.yapi</id>
+  <id>com.optimus.yapi</id>
 
   <!-- Public plugin name should be written in Title Case.
        Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
   <!--插件的名称-->
-  <name>AutoMade</name>
+  <name>OptimusTools</name>
 
   <vendor email="1184254139@qq.com" url="https://github.com/Mrxiiaobai/yapi-tools">Mrxiiaobai</vendor>
 
   <!-- Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
   <!--  插件介绍-->
   <description>
-    the yapi tools can convert the java file which is opening to yapi json,
-    and click the right-top yapi or click the yapi which under the tools to open the yapi window.
+    <![CDATA[
+      <html>
+          <p>1. Functionality: Translate the Java code into JSON Schema.</p>
+          <p>2. Keyboard-shortcut: the keyboard-shortcut is control + y</p>
+          <p>3. Operation: the yapi tools can convert the java file which is opening to yapi json,
+    and click the right-top yapi or click the yapi which under the tools to open the yapi window.</p>
+      </html>
+    ]]>
   </description>
 
   <!-- Product and plugin compatibility requirements.
@@ -25,7 +31,7 @@
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
-    <toolWindow factoryClass="com.example.yapi.YapiToolWindowFactory" id="yapi" anchor="right" secondary="false" icon="/icons/toolWindow.svg" />
+    <toolWindow factoryClass="com.optimus.yapi.YapiToolWindowFactory" id="yapi" anchor="right" secondary="false" icon="/icons/toolWindow.svg" />
 <!--    <iconMapper mappingFile="MavenIconMappings.json"/>-->
   </extensions>
 
@@ -33,7 +39,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="yapi" class="com.example.yapi.YapiAction" text="Yapi" icon="/icons/toolWindow.svg">
+    <action id="yapi" class="com.optimus.yapi.YapiAction" text="Yapi" icon="/icons/toolWindow.svg">
       <keyboard-shortcut first-keystroke="ctrl Y" keymap="Mac OS X 10.5+" />
       <add-to-group group-id="ToolsMenu" anchor="first" />
     </action>
